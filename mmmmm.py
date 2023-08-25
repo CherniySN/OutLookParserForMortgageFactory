@@ -20,9 +20,20 @@ for messag in messages:
         print('Адрес отправителя: ', messendaddres)
         print('Содержание письма: ', messbody)
 
+        path = "C:/Users/pc/Downloads/forABBmailsorted/" + messub
+
+        if os.path.exists(path):
+            path = path +'/'
+            print('Папка найдена!')
+
+        else:
+            os.mkdir(path)  # создаем папку
+            path = path + '/'
+            print('Была создана новая папка!')
+
         for att in messag.Attachments:
             print(att)
-            att.SaveASFile(os.path.join('C:/Users/pc/Downloads/forABBmailsorted/' + att.FileName))
+            att.SaveASFile(os.path.join(path + att.FileName))
             print("Mail Successfully Extracted")
     except:
         continue
